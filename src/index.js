@@ -95,11 +95,11 @@ class DataTableExtensions extends Component {
     this.setState({ data: filtered, filter: value });
   }
 
-  onPrint() {
+  onPrint(customHeader) {
     this.onDataRender();
 
     const { data, header } = this.raw;
-    const table = ExportMethod.print(data, header);
+    const table = ExportMethod.print(data, header, customHeader);
 
     Utilities.print(table);
   }
@@ -118,7 +118,7 @@ class DataTableExtensions extends Component {
 
   render() {
     const { dropdown, columns, data } = this.state;
-    const { filter, print, children, filterPlaceholder } = this.props;
+    const { filter, print, children, filterPlaceholder, customHeader } = this.props;
     return (
       <>
         <div className="data-table-extensions">
@@ -132,7 +132,7 @@ class DataTableExtensions extends Component {
                 onClick={(e, type) => this.onExport(e, type)}
               />
             )}
-            {print && <Print onClick={() => this.onPrint()} />}
+            {print && <Print onClick={() => this.onPrint(customHeader)} />}
           </div>
         </div>
         {React.cloneElement(children, { columns, data })}
@@ -152,6 +152,7 @@ DataTableExtensions.propTypes = {
   exportHeaders: PropTypes.bool,
   children: PropTypes.node,
   filterHidden: PropTypes.bool,
+  customHeader: PropTypes.string,
 };
 
 DataTableExtensions.defaultProps = {
@@ -164,6 +165,7 @@ DataTableExtensions.defaultProps = {
   children: null,
   filterHidden: true,
   filterPlaceholder: 'Filter Table',
+  customHeader: null,
 };
 
 export default DataTableExtensions;

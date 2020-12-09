@@ -23,7 +23,7 @@ const excel = (data, header) => {
   };
 };
 
-const print = (data, header) => {
+const print = (data, header, customHeader) => {
   const { content } = excel(data, header);
 
   const style = '\n' +
@@ -43,7 +43,7 @@ const print = (data, header) => {
     'thead {\n' +
     'font-weight: bold;\n' +
     '}';
-  return `<style>${style}</style>${content}`;
+  return `<style>${style}</style>${customHeader || ''}${content}`;
 };
 
 const ExportMethod = {

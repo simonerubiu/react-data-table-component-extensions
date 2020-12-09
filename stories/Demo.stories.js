@@ -50,6 +50,7 @@ export const Demo = () => {
     <DataTableExtensions
       {...tableData}
       filterPlaceHolder="Dayımlar"
+      customHeader="EXPORT DATA"
     >
       <DataTable
         noHeader
