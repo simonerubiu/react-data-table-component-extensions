@@ -18,11 +18,24 @@ const download = props => {
   document.getElementById(link.id).remove();
 };
 
-const print = table => {
+const sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
+
+const print = (table, printDialog, closeOnPrint, title) => {
   const printWindow = window.open();
   printWindow.document.write(table);
-  printWindow.print();
-  // printWindow.close();
+  if (title) {
+    printWindow.document.title = title;
+  } else {
+    printWindow.document.title = 'Exported data';
+  }
+  sleep(500).then(() => {
+    if (printDialog) {
+      printWindow.print();
+      if (closeOnPrint) {
+        printWindow.close();
+      }
+    }
+  });
 };
 
 const lower = value => (value.toString().toLowerCase());
