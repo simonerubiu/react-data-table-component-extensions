@@ -12,7 +12,7 @@ const csv = (data, header) => {
 };
 
 const excel = (data, header) => {
-  const contentHeader = (header ? `<thead><tr><td>${header.map(e => e.name).join('</td><td>')}</td><tr></thead>` : '');
+  const contentHeader = (header ? `<thead><tr><th>${header.map(e => e.name).join('</th><th>')}</th><tr></thead>` : '');
   const contentBody = data.map(e => Utilities.concat.excel(e));
   const content = `<table>${contentHeader}<tbody>${contentBody.join('')}</tbody></table>`;
 
@@ -32,8 +32,14 @@ const print = (data, header) => {
     'font-size:12px \n' +
     '}\n' +
     'table {\n' +
+        'border-collapse: collapse;\n' +
+        'border-spacing: 0px;\n' +
     'width: 100%;\n' +
     '}\n' +
+        'th,td {\n' +
+        'border: 1px solid black;\n' +
+        'text-align: center;\n' +
+        '}\n' +
     'thead {\n' +
     'font-weight: bold;\n' +
     '}';

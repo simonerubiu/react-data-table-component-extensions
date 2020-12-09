@@ -22,7 +22,7 @@ const print = table => {
   const printWindow = window.open();
   printWindow.document.write(table);
   printWindow.print();
-  printWindow.close();
+  // printWindow.close();
 };
 
 const lower = value => (value.toString().toLowerCase());
@@ -115,7 +115,7 @@ const concat = {
       }
     });
 
-    return `<tr style="border-bottom:1px solid #000;"><td style="border-right:1px solid #000;">${items.join('</td><td style="border-right:1px solid #000;">')}</td></tr>`;
+    return `<tr><td>${items.join('</td><td>')}</td></tr>`;
   },
 };
 
